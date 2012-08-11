@@ -1,0 +1,776 @@
+nux Classes
+  Share This With a Friend   
+Share1522
+LINUX CLASSES - PROGRAMMING
+Linux Script Variables
+
+ 
+
+ 
+What Are Shell Script Variables?
+
+A variable in a shell script is a means of referencing a numeric or character value. And unlike formal programming languages, a shell script doesn't require you to declare a type for your variables. Thus, you could assign a number to the variable stuff and then use it again in the same script to hold a string of characters. To access the value (contents) of a variable, prefix it with a dollar sign.
+stuff=5
+stuff='chocolate truffles'
+
+Don't put any spaces before or after the equal sign, or you'll get an error. And if you want to assign a string that contains spaces, you will need to put quotation marks around the string.
+
+This is a good time to note that there are several distinct ways to use quotations marks in a shell script. Let's look at the differences among single quotation marks, double quotation marks, and the backslash character and then follow up with some examples.
+
+· Single quotation marks, as in the preceding example, will always get you exactly what's inside the quotation marks--any characters that might otherwise have special meaning to the shell (like the dollar sign or the backslash) are treated literally.
+
+· Use double quotation marks when you want to assign a string that contains special characters the shell should act on.
+
+· The backslash is used to escape (treat literally) a single character (such as $ or *) that might otherwise be treated as a special character by the shell.
+
+Now let's look at some examples that show when to use each method of quoting.
+
+howdy='Good Morning $USER !'
+echo $howdy
+Good Morning $USER !
+
+howdy="Good Morning $USER !"
+echo $howdy
+Good Morning hermie !
+
+In the first case, the value of the howdy variable would probably not be what you wanted. The single quotation marks caused Bash to not treat $USER as a variable. In the second case, the results look much better. The double quotation marks allowed Bash to substitute the value of $USER, which is set automatically when you log in, in the string.
+
+Here's another example that demonstrates a common error:
+
+costmsg="Price is $5.00"
+echo $costmsg
+Actual result: Price is .00
+
+We thought enough to quote the string, but the dollar sign tells Bash to use the value in the $5 variable, which is not what we wanted.. We can easily solve the problem by prefixing the dollar sign with a backslash, as shown here:
+
+$ costmsg="Price is \$5.00"
+$ echo $costmsg
+Actual result: Price is $5.00
+
+Arguments and Other Special Variables
+
+Arguments are the values you pass to a shell script. Each value on the command line after the name of the script will be assigned to the special variables $1, $2, $3, and so on. The name of the currently running script is stored in the $0 variable.
+
+Here are some other special variables you will find useful in script writing:
+
+$# The number of arguments
+
+$* The entire argument string
+
+$? The return code from the last command issued
+
+So let's try some examples working with arguments and other special variables. Create an executable script called testvars containing these lines:
+
+echo "My name is $0"
+echo "First arg is: $1"
+echo "Second arg is: $2"
+echo "I got a total of $# arguments."
+echo "The full argument string was: $*"
+
+Now if you run this script, here's what you'll see:
+
+$ ./testvars birds have lips
+My name is testvars
+First arg is: birds
+Second arg is: have
+I got a total of 3 arguments.
+The full argument string was: birds have lips
+
+Previous Lesson: Executing a Script
+Next Lesson: Shell Script Logic
+[ RETURN TO INDEX ]
+
+
+   
+
+ 
+
+Comments - most recent first
+(Please feel free to answer questions posted by others!)
+
+tom     (18 Apr 2012, 02:06)
+Hello, 
+I am new to Unix and have been tasked with:
+Provided the following expression is used for adding two numbers in BASH: 
+
+`expr $1 + $2`
+
+Develop a script that takes as input two numbers ($1, and $2), and adds the two numbers. If no input is provided, then exit with an error message.
+
+I am stumped.I have been looking for hours. This expr has got me. Any and all help greatly appreciated
+Ritika Pathak     (11 Apr 2012, 06:15)
+i found amazing information in this........
+its too good. keep it up......
+Doug     (22 Mar 2012, 01:46)
+How can a shell script tell which virtual console it is running on?
+
+thanks
+hari kishan     (18 Mar 2012, 12:05)
+can you give a example in which the linux program take any real number 
+actually we want a program in linux ,in which the program take any n real value and give their sum average mini. & max value
+but our program is taking only int. value . it is not taking desimal & negative value
+the tast is not accept desimsal(2.3 etc.) value
+Pushkraj     (16 Mar 2012, 05:20)
+FTP_IP_ADD_1=10.10.10.10
+FTP_IP_ADD_2=11.11.11.11
+FTP_IP_ADD_3=12.12.12.12
+TOTAL=3
+
+count=0
+while [[ $count -lt $TOTAL ]]
+do
+echo $count
+count=$((count + 1))
+ADDRESS=FTP_IP_ADD_$count
+echo "$ADDRESS" #This will print FTP_IP_ADD_1,FTP_IP_ADD_2,FTP_IP_ADD_3
+#(I want IP Address to be printed)
+done
+rakesh kumar rai     (05 Mar 2012, 13:13)
+#!/bin/bash
+echo 'date'
+Sam     (17 Feb 2012, 23:02)
+This does pertain to a homework assignment.I need to insert message @ startup and different one at shutdown inserting a soft link in the rc0.d and rc2.d directories I am pointing to a script with a case construct. I took the 1st few lines from other scripts in those files. I need to know where the $1 variable is getting it's value from. any help would be appreciated
+yasaman     (17 Feb 2012, 07:14)
+hi i am new in unix shell script..i need to create new item and edit the items for a supremarket.could u plz help me with that ?
+amar nadh     (07 Feb 2012, 23:25)
+sir, actually in a file it contains values like *103.172*
+*10.3569* etc. 
+now i need get the data before the dot(.). for that i used cut command and tried to compare the cut value with dot(.). but it is showing error integer is expecting.
+Bob Rankin     (04 Feb 2012, 18:52)
+@CollZ - Did you just post your homework assignment, verbatim? LOL! :-)
+CollZ     (04 Feb 2012, 01:31)
+write a script that will ask the user an input and will determine the number of character inputs. the script should then print how many characters was entered by the user and will ask the if the user would start again or exit.
+Muzaffar Hussain     (21 Jan 2012, 13:25)
+Hi,
+
+I am writing simple shell script i need to prefix the values of x and y with 'C'. Please advice.
+
+#!/bin/bash
+x=$(date +%Y%m%d)
+echo $x
+
+a=1
+b=2
+c=3
+d=4
+e=5
+f=6
+
+y= expr $x - $a
+echo $y
+Jon     (30 Sep 2011, 13:33)
+I would greatly appreciate some Unix/Linux help with this. Running Fedora 14 and using BASH shell.
+
+I have a situation where I need to refer to a variable that is "encapsulated" in single quotes ('). When I run the follwing, it does not recognize the variable. The value for name has to be surrounded by single quotes, otherwise it will yield errors. I've thought about using another value for the table entry, but all others are either too common or will not be known at the time this script is run. The program I am using to run this does not yield any errors.
+
+query=$"`./query - @10.0.0.50 -d -a TABLE -w \"name: == '$DBPath'\" -s DELETE`"
+
+echo $query
+
+I have another command that adds data to the table that follows this same format, but there are no instances in that code where the variable is encapsulated in single quotes. Below:
+
+post=$"`./mposter -n @10.0.0.50 -d -a TABLE -b \"name=$DBPath;description=Automated_Blackout_of_$DBPath;start=$StartDate;e nd=$EndDate`"
+Mike     (11 Aug 2011, 08:47)
+Attempting to name a file using a date variable but having issues appending to the end of the file name.
+set DATEE=`date -d "yesterday" +"%m%d%y"`
+cat file1.TXT file2.TXT file3.TXT > ${DATEE}newfile.txt
+It works okay if I put the date varible at the end of newfile$DATEE.txt
+Any help is appreciated.
+hari     (29 Jun 2011, 15:16)
+A shell variable cannont hold negative value ?
+True or Flase?
+Awais     (29 May 2011, 11:34)
+ok so here is the problem:
+
+lets say ive got the following string stored in mysql database in column 'info' of table 'TBL':
+
+"ur name is $name"
+
+and lets say ive got this code :
+=================================================
+#bin/bash
+echo -n "enter your name: "; 
+read -e $name; /*read input from user an store it in $name*/
+
+result=$(mysql -u USER -p -e "use xyz_db; select info from TBL where id=1;);
+
+echo $result; 
+
+================================================
+
+I want the string retrieved from database and stored in the variable "result", ("ur name is $name"), to be opened some how in this code so that the user supplied input of "$name" in this code be put in the variable "$name" of the retreived string from data base.
+
+so when it asks: and a name is entered, like
+
+enter your name: jhon
+
+it should put that value in the string retrived from database which contains variable $name. and the out put should come as:
+
+"ur name is jhon"
+===============================================
+
+its something that i need to do...and its getting very annoying. its my requirment that the string stored in the database should contain the variable that will store the input given by the user in the program.
+
+I would REALLYY apriciate any bright ideas or ways or changes in this code to make this work.
+
+best regard
+Desperate_scripter
+mahtab     (17 May 2011, 18:25)
+please help me!
+I am new in shell scripting. I have a lit of files like this:
+BN090101
+BN090102
+.
+.
+BN090201
+.
+.
+I want to read these file 1 by 1 and copy them to another directory. I mean copy for example first one then second one and so on. not all together. what should I do?
+sahil     (02 Mar 2011, 07:53)
+i want to compare decimal values in while loop condition.
+plz help
+malaz     (15 Feb 2011, 20:04)
+I have a script that i am trying to display text content while the variable is part of for loop, Pretty much , I am trying to display string contents of equa_vma1, equa_vma2, .... using for loop
+#!/bin/sh -x
+equa_vma1="c0c1153a3024cf83-vma1"
+equa_vma2="5a81153a3054cf83-vma2"
+equa_vma3="c981153a3084cf83-vma3"
+setup_80g ()
+{
+op=$1
+initial=$2
+max=$3
+for i in $(seq $initial $max)
+do
+iqn="equa_vma$i"
+echo $iqn
+done
+}
+setup_80g a 1 2
+
+malaz     (15 Feb 2011, 20:02)
+I have a script that i am trying to display text content while the variable is part of for loop, Pretty much , I am trying to display string contents of equa_vma1, equa_vma2, .... using for loop
+peter     (14 Feb 2011, 14:37)
+Hello,
+I am writing a script that reads a list of paths/directories and then enters each directory and create a folder with a name extracted from the name of this directory,
+for example:
+I have path to be ../gcm/peter
+i have to get into ../gcm/peter and create a folder named shared_peter
+here is my script (I need to change "shared" into shared_peter, which is part of $DIR): 
+#! /bin/sh
+while read DIR
+do
+cd $DIR
+echo "------------------------------------------------"
+echo "I am in directory"
+echo $DIR
+echo "Creating shared directory"
+mkdir -p shared
+ls $DIR/
+cd
+echo "------------------------------------------------"
+done
+
+exit 0
+
+thanks for the help
+Dipankar Ghosh     (31 Jan 2011, 07:48)
+hi i want to update a port number in a file such like......
+file content.....abc.cfg
+
+# Temporary use by Boyajian. Thank you.
+# Plz feel free to change as per ur need. Thnx - Ayan
+###---SBJ_VIEW_NAME=devB_4140sdd
+#SBJ_VIEW_NAME=bagay_dev_mts_1440sdd
+SBJ_VIEW_NAME=devD_4018
+#SBJ_VIEW_NAME=devD_4017
+ACE_MATCH_SERVER_HOST=localhost
+
+ACE_MATCH_SERVER_PORT=16711
+
+ACE_JASI_SERVER_PORT=75675
+ENT_CLIENT_HOSTS=localhost,imts1,charon
+ENT_SERVER_PORT=45785
+ENT_SERVER_HOST=imts1
+ENT_VIRTUAL_MEMORY=1000000000
+ENT_NUM_ACCUMULATORS=8
+SBJ_NO_SIG_CHECK=1
+AREA_PROD_BRANCH=s2010
+
+
+now if i want to update the value of ACE_MATCH_SERVER_PORT from 16711 to 78777
+what would be the code to do this stub? please give a solution at the earliest
+
+manoj     (08 Jan 2011, 23:23)
+consider this and reply as early as possible
+m=3
+n=2
+c=`expr $m / $n`
+echo "$c"
+
+this prints integer value 
+i need float value to be printed
+pls help soon
+jass     (24 Dec 2010, 09:01)
+hi i am new for shell scropting and would like to learn it properly and i think this way i can learn fast.so please send me updates on shell scripting thanks.............
+Dave     (19 Dec 2010, 17:21)
+I am trying to write a script using nano that does the following: accepts three arguments and adds the numbers up 
+echo out the result
+
+I am having no luck with this PLS HELP !!!
+mejoo     (19 Nov 2010, 04:58)
+very very very good 
+but,please disccusing the variable like
+integer,float,double,and so on
+"how work with it's"
+
+thank you.
+Edson     (29 Oct 2010, 14:17)
+Hi, I need read Statement and search it's statement in a file of text. But just can read statement and don't can do the grep in the file.
+This my config:
+*********************************************
+#!/bin/sh
+# assign a value:
+while :
+do
+clear
+echo "-------------------------------------"
+echo " Menu Principal "
+echo "-------------------------------------"
+echo "[1] Para verificar si esta configurado el mac"
+echo "[2] Para verificar y agregar mac address"
+echo "[3] Salir/Cancelar"
+echo "======================="
+echo -n "Entre su seleccion de [1-3]: "
+read yourch
+case $yourch in
+1) echo "Introducir los 4 ultimos digitos del mac-address:" $fname 
+read $fname
+echo "grep $fname /etc/vmps.dd" ;;
+************************************************
+But do nothing.
+Ira     (14 Oct 2010, 16:37)
+Bob,
+I found the issue; the list "$*" should be "$@"
+
+Works great.
+Ira     (13 Oct 2010, 19:49)
+I created this file named test:
+for item in "$*"
+do
+echo "Argument value is: $item"
+done
+
+To run the file, I use:
+./test a b c
+
+The result I got was:
+
+Argument value is: a b c
+Why did the script put 'a b c' into one value?
+Should I have seen:
+
+Argument value is: a
+Argument value is: b
+Argument value is: c
+
+Ben     (12 Oct 2010, 04:45)
+THANKS :)
+Steve     (03 Sep 2010, 17:47)
+Thank you so much Bob Rankin. Your method worked and I didn't even have to write a script (I guess I was complicating the problem).
+When running the program, the question format seems to be screwed up (all questions on one line? and the answers are blank?) but the programs results are correct so the fortran must have recognized the answers from the text file. Thanks again.
+Bob Rankin     (03 Sep 2010, 09:47)
+@Steve, Create a file named input.txt with each answer on a separate line, then run this command:
+
+xx1 < input.txt
+Steve     (02 Sep 2010, 20:01)
+I have a fortran program that, when you run it, it asks the user for things (yes or no to questions, selection of options 1, 2, or 3). It asks 3 questions of the user and then based on the user responses, the program does things.
+
+As an example, I run the program (called xx1):
+>xx1
+Do you want ascii output (y,n)?
+>y
+Do you want to use data1 (1) or data2 (2)?
+>2
+Do you want a pos plot (1) or a vel plot (2)?
+>1
+>
+
+I want to record the answers for specific runs so I want to create a script where the answers are recorded and the script runs the program.
+
+If I type on command line:
+>xx1 y 2 1
+this doesn't work.
+
+How can I write a script to run xx1 with the answers to the questions in it, so I don't have to answer the questions each time?
+windsor     (07 Aug 2010, 02:48)
+I am trying to write a c shell script that takes a string as in pput and search in the current subdirectories.
+In other words,
+find . exec | grep "text to search for" '{}' \;
+
+Called it myfind
+find . exec | grep $1 '{}' \;
+
+>myfind "text to search"
+does not work
+This does not work.
+Michal     (03 Aug 2010, 13:31)
+I am very new to the world of Linux and I am very confused with it. I have to write a script for a class and I have no idea how to start. I have an idea what commands to use, but putting it together is hard. The script is supposed to let an administrator know when a user has been accessing the system without permission. Can someone please help? Thanks
+chinku     (27 Jul 2010, 16:31)
+we generally use expr 2 + 3 to add two numbers can i change something to simply use it as 2 + 3 to get the output
+NOYB     (13 Jul 2010, 17:29)
+Special Variables, Arrays in FOR Loop
+
+ARRAY=("ONE A Z" "TWO B Y" "THREE C X")
+
+#	for I in ${ARRAY[*]}	# Each Item in the Array is listed.
+#	for I in ${ARRAY[@]}	# Each Item in the Array is listed.
+#	for I in "${ARRAY[*]}"	# Each String in the Array is Concatenated.
+for I in "${ARRAY[@]}"	# Each String in the Array is listed.
+do
+echo "LOOP START:"
+echo $I
+echo ${I[*]}
+echo ${I[@]}
+echo ${I[0]}
+
+LOOP_ARRAY=($I)
+echo LOOP ARRAY:
+echo $LOOP_ARRAY	 # 1st Item of Loop Array
+echo ${LOOP_ARRAY[0]}	# 1st Item of Loop Array
+echo ${LOOP_ARRAY[1]}	# 2nd Item of Loop Array
+echo ${LOOP_ARRAY[2]}	# 3rd Item of Loop Array
+done
+
+jek     (17 May 2010, 19:37)
+its not an error i want.. its the code for checking the error of a script.for example i have a script and i forgot to put an utility beside it to work.then the script containing the error command will check my other script that has an error and will prompt me to that.
+Bob Rankin     (17 May 2010, 06:43)
+What kind of errors do you want to find?
+jek     (16 May 2010, 20:16)
+i need a scrip which would determine a file with errors and would notify me that it has errors
+Gyanu     (04 May 2010, 06:53)
+Hi I am new for shell scripting and would like to learn it properly and I think this way I can learn fast. so please send me updates on Shell Scripting thanks
+selva     (03 May 2010, 02:37)
+good one, ive been following most of your tips on scripting. They are simple and easily uniderstandable...keep up the good work :)
+
+cheers!!
+
+I welcome your comments. However... I am puzzled by many people who say "Please send me the Linux tutorial." This website *is* your Linux Tutorial! Read everything here, learn all you can, ask questions if you like. But don't ask me to send what you already have. :-) 
+
+NO SPAM! If you post garbage, it will be deleted, and you will be banned.
+*Name:	
+Email:	
+Notify me about new comments on this page
+Hide my email
+*Text:	
+ 	
+
+
+
+
+Copyright © 2012, by Bob Rankin - Privacy Policy 
+All rights reserved - Redistribution is allowed only with permission.
+Popular Linux Topics
+  Linux Intro 
+  Linux Files 
+  Linux Commands 
+  Change Password 
+  Copy Files 
+  Linux Shell Basics 
+Linux Tutorial
+  Who is Doctor Bob? 
+  What is Linux? 
+  History of Unix 
+  Operating Systems 
+  What's Next? 
+
+
+ 
+Linux Basics
+  Living in a Shell 
+  Root and Other Users 
+  Virtual Consoles 
+  Logoff and Shutdown 
+  Choosing a Shell 
+  The Command Prompt 
+  Wildcards 
+  Command History 
+  Aliases 
+  Redirection 
+  Pipelines 
+  Processes 
+  Stopping a Program 
+  Environment Variables 
+  Help! 
+Linux Files
+  The Linux File System 
+  Linux File Names 
+  Linux Directories 
+  Directory Terminology 
+  Navigating the File System 
+  Listing Linux Files 
+  Displaying Linux Files 
+  Copying and Renaming Files 
+  Creating Files and Directories 
+  Deleting Files and Directories 
+  Linux Files - Wildcards 
+  The Nine Deadly Keystrokes 
+  Linux File Permissions 
+  Changing File Permissions 
+Linux Commands
+  Important Linux Commands 
+  Changing Your Password 
+  Switching Users 
+  Who is Logged In? 
+  Date and Time 
+  The Echo Command 
+  Spell Checking 
+  Printing Linux Files 
+  Joining Files 
+  Searching for Files 
+  Comparing Files 
+  Task Scheduling 
+  Linking Files 
+Linux Editors
+  The Vi Editor 
+  The Emacs Editor 
+  The Pico Editor 
+Linux Data Manipulation
+  Slicing & Dicing 
+  Heads or Tails? 
+  Sorting Data 
+  Eliminating Duplicates 
+  Selecting Columns 
+  Selecting Records 
+  Search & Replace 
+  Crunching Data 
+  Finding Files 
+  Pipe Fitting 
+Linux Shell Programming
+  Linux Shell Scripts 
+  Executing a Script 
+  Shell Script Variables 
+  Shell Script Logic 
+  Shell Script Looping 
+  Shell Script Debugging 
+Perl Programming
+  Perl Basics 
+  Perl Variables 
+  Perl Arguments 
+  Perl Logic 
+  Perl Looping 
+  Perl and Files 
+  Perl Pattern Matching 
+Linux and Email
+  Sending Email 
+  Reading Email 
+  Other Mail Commands 
+  Using Pine for Email 
+  The Pine Inbox 
+  Pine Email Basics 
+  Pine Email Folders 
+  Pine for Power Users 
+Compression and Encoding
+  Linux File Compression 
+  Archiving With Tar 
+  Compression With Gzip 
+  Compress and Zcat 
+  Zmore and Zless 
+  Zip and Unzip 
+  Encoding and Decoding 
+  Encryption 
+Linux Does DOS
+  Accesing DOS Files 
+  Accesing DOS Partitions 
+  Running DOS Programs 
+Managing Linux
+  Updating Your Linux System 
+  Installing Packages with RPM 
+  Uninstalling Packages w/ RPM 
+  Upgrading Packages with RPM 
+  Querying Packages with RPM 
+ 
+Linux Shell Scripting Tutorial (LSST) v1.05r3
+Prev
+Chapter 3: Shells (bash) structured Language Constructs
+Next
+for Loop
+
+Syntax:
+            for { variable name } in { list }
+            do
+                     execute one for each item in the list until the list is
+                     not finished (And repeat all statement between do and done)
+            done
+Before try to understand above syntax try the following script:
+
+$ cat > testfor
+for i in 1 2 3 4 5
+do
+echo "Welcome $i times"
+done
+Run it above script as follows:
+$ chmod +x testfor
+$ ./testfor
+The for loop first creates i variable and assigned a number to i from the list of number from 1 to 5, The shell execute echo statement for each assignment of i. (This is usually know as iteration) This process will continue until all the items in the list were not finished, because of this it will repeat 5 echo statements. To make you idea more clear try following script:
+
+$ cat > mtable
+#!/bin/sh
+#
+#Script to test for loop
+#
+#
+if [ $# -eq 0 ]
+then
+echo "Error - Number missing form command line argument"
+echo "Syntax : $0 number"
+echo "Use to print multiplication table for given number"
+exit 1
+fi
+n=$1
+for i in 1 2 3 4 5 6 7 8 9 10
+do
+echo "$n * $i = `expr $i \* $n`"
+done
+Save above script and run it as:
+$ chmod 755 mtable
+$ ./mtable 7
+$ ./mtable
+For first run, above script print multiplication table of given number where i = 1,2 ... 10 is multiply by given n (here command line argument 7) in order to produce multiplication table as
+7 * 1 = 7
+7 * 2 = 14
+...
+..
+7 * 10 = 70
+And for second test run, it will print message -
+Error - Number missing form command line argument
+Syntax : ./mtable number
+Use to print multiplication table for given number
+
+This happened because we have not supplied given number for which we want multiplication table, Hence script is showing Error message, Syntax and usage of our script. This is good idea if our program takes some argument, let the user know what is use of the script and how to used the script.
+Note that to terminate our script we used 'exit 1' command which takes 1 as argument (1 indicates error and therefore script is terminated)
+
+Even you can use following syntax:
+
+Syntax:
+
+         for (( expr1; expr2; expr3 ))
+         do
+               .....
+			   ...
+               repeat all statements between do and 
+               done until expr2 is TRUE
+         Done
+In above syntax BEFORE the first iteration, expr1 is evaluated. This is usually used to initialize variables for the loop. 
+All the statements between do and done is executed repeatedly UNTIL the value of expr2 is TRUE.
+AFTER each iteration of the loop, expr3 is evaluated. This is usually use to increment a loop counter.
+
+$ cat > for2
+for ((  i = 0 ;  i <= 5;  i++  ))
+do
+  echo "Welcome $i times"
+done
+Run the above script as follows:
+$ chmod +x for2
+$ ./for2
+Welcome 0 times
+Welcome 1 times
+Welcome 2 times
+Welcome 3 times
+Welcome 4 times
+Welcome 5 times
+
+In above example, first expression (i = 0), is used to set the value variable i to zero.
+Second expression is condition i.e. all statements between do and done executed as long as expression 2 (i.e continue as long as the value of variable i is less than or equel to 5) is TRUE.
+Last expression i++ increments the value of i by 1 i.e. it's equivalent to i = i + 1 statement.
+
+Nesting of for Loop
+
+As you see the if statement can nested, similarly loop statement can be nested. You can nest the for loop. To understand the nesting of for loop see the following shell script.
+
+$ vi nestedfor.sh
+for (( i = 1; i <= 5; i++ ))      ### Outer for loop ###
+do
+
+    for (( j = 1 ; j <= 5; j++ )) ### Inner for loop ###
+    do
+          echo -n "$i "
+    done
+
+  echo "" #### print the new line ###
+
+done
+Run the above script as follows:
+$ chmod +x nestedfor.sh
+$ ./nestefor.sh
+1 1 1 1 1
+2 2 2 2 2
+3 3 3 3 3
+4 4 4 4 4
+5 5 5 5 5
+
+Here, for each value of i the inner loop is cycled through 5 times, with the varible j taking values from 1 to 5. The inner for loop terminates when the value of j exceeds 5, and the outer loop terminets when the value of i exceeds 5.
+
+Following script is quite intresting, it prints the chess board on screen.
+
+$ vi chessboard
+for (( i = 1; i <= 9; i++ )) ### Outer for loop ###
+do
+   for (( j = 1 ; j <= 9; j++ )) ### Inner for loop ###
+   do
+        tot=`expr $i + $j`
+        tmp=`expr $tot % 2`
+        if [ $tmp -eq 0 ]; then
+            echo -e -n "\033[47m "
+        else
+            echo -e -n "\033[40m "
+        fi
+  done
+ echo -e -n "\033[40m" #### set back background colour to black
+ echo "" #### print the new line ###
+done
+Run the above script as follows:
+$ chmod +x chessboard
+$ ./chessboard
+
+On my terminal above script produec the output as follows:
+
+
+
+Above shell script cab be explained as follows:
+
+Command(s)/Statements
+Explanation
+for (( i = 1; i <= 9; i++ ))
+do	Begin the outer loop which runs 9 times., and the outer loop terminets when the value of i exceeds 9
+for (( j = 1 ; j <= 9; j++ ))
+do	
+Begins the inner loop, for each value of i the inner loop is cycled through 9 times, with the varible j taking values from 1 to 9. The inner for loop terminates when the value of j exceeds 9.
+
+tot=`expr $i + $j`
+tmp=`expr $tot % 2`
+See for even and odd number positions using these statements.
+if [ $tmp -eq 0 ]; then
+    echo -e -n "\033[47m "
+else
+    echo -e -n "\033[40m "
+fi
+
+If even number posiotion print the white colour block (using echo -e -n "\033[47m " statement); otherwise for odd postion print the black colour box (using echo -e -n "\033[40m " statement). This statements are responsible to print entier chess board on screen with alternet colours.
+done
+
+End of inner loop
+echo -e -n "\033[40m"
+
+Make sure its black background as we always have on our terminals.
+echo ""	Print the blank line
+done	End of outer loop and shell scripts get terminted by printing the chess board.
+Exercise
+Try to understand the shell scripts (for loops) shown in exercise chapter.
+
+Prev
+Home
+Next
+Loops in Shell Scripts	
+Up
+while loop

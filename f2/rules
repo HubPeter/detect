@@ -1,0 +1,20 @@
+alert tcp any any -> any any (msg:"any"; flags: SF;sid:100000000;)
+
+#alert tcp 61.135.169.105 80 -> any any (msg:"baidu"; flags: SF;sid:100000000;)
+
+#alert icmp 172.29.137.19 any -> 172.29.137.21 any (msg:"to neighborhood";sid:100000000;)
+
+#alert icmp 172.29.137.21 any -> 172.29.137.19 any (msg:"from neighborhood";sid:100000000;)
+
+#alert icmp 172.29.137.19 any -> 172.29.0.0/24 any (msg:"from neighborhood";sid:100000000;)
+
+#alert icmp 172.29.137.21 any -> 172.29.0.0/24 any (msg:"from neighborhood";sid:100000000;)
+
+#alert tcp 172.29.137.21 any -> 61.135.169.105 80 (msg:"Lu Bing from baidu.com";sid:100000000;)
+
+#alert icmp 172.29.137.21 any -> 172.29.137.22 any (msg:"Lu Bing from baidu.com";sid:100000000;)
+
+#alert udp 172.29.137.19 any -> 172.29.137.0/24 any (msg:"from neighborhood";sid:100000000;)
+
+#alert udp 172.29.137.21 any <> 172.29.137.0/24 any  (msg:"from neighborhood";sid:100000000;)
+
